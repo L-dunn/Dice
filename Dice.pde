@@ -6,9 +6,9 @@ void setup()
 
 int sum = 0;
 int space = 10;
-int dieSize = 100;
-int numRows = 4;
-int numCols = 4;
+int dieSize = 60;
+int numRows = 3;
+int numCols = 3;
 
 void draw()
 {
