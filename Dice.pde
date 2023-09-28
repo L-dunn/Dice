@@ -6,19 +6,22 @@ void setup()
 
 int sum = 0;
 int space = 10;
+int dieSize = 100;
+int numRows = 4;
+int numCols = 4;
 
 void draw()
 {
     //your code here
     background(255, 255, 255);
     sum = 0;
-    for(int rows = space; rows < 220; rows += 70){
-      for(int cols = space; cols < 220; cols += 70){
+    for(int rows = space; rows < (numRows * (dieSize + space)) + 10; rows += (dieSize + space)){
+      for(int cols = space; cols < (numCols * (dieSize + space)) + 10; cols += (dieSize + space)){
         Die die = new Die(rows, cols);
         die.show();
       }
     }
-    text("Sum of dice: " + sum, 250, 400);
+    text("Sum of dice: " + sum, 250, 450);
 }
 void mousePressed()
 {
@@ -43,7 +46,7 @@ class Die //models one single dice cube
     {
         //your code here
         fill(255, 255, 255);
-        rect(xPos, yPos, 60, 60);
+        rect(xPos, yPos, dieSize, dieSize);
         roll();
         sum += num;
         fill(0);
@@ -52,32 +55,32 @@ class Die //models one single dice cube
         //odd rolls
         if(num % 2 == 1){
           //1
-          ellipse(xPos + 30, yPos + 30, 10, 10);
+          ellipse(xPos + (0.5 * dieSize), yPos + (0.5 * dieSize), (dieSize / 6), (dieSize / 6));
           if(num >= 3){
             //3
-            ellipse(xPos + 15, yPos + 15, 10, 10);
-            ellipse(xPos + 45, yPos + 45, 10, 10);
+            ellipse(xPos + (0.25 * dieSize), yPos + (0.25 * dieSize), (dieSize / 6), (dieSize / 6));
+            ellipse(xPos + (0.75 * dieSize), yPos + (0.75 * dieSize), (dieSize / 6), (dieSize / 6));
           }
           if(num > 3){
             //5
-            ellipse(xPos + 45, yPos + 15, 10, 10);
-            ellipse(xPos + 15, yPos + 45, 10, 10);
+            ellipse(xPos + (0.75 * dieSize), yPos + (0.25 * dieSize), (dieSize / 6), (dieSize / 6));
+            ellipse(xPos + (0.25 * dieSize), yPos + (0.75 * dieSize), (dieSize / 6), (dieSize / 6));
           }
         }
         //even rolls
         if(num % 2 == 0){
           //2
-          ellipse(xPos + 15, yPos + 15, 10, 10);
-          ellipse(xPos + 45, yPos + 45, 10, 10);
+          ellipse(xPos + (0.25 * dieSize), yPos + (0.25 * dieSize), (dieSize / 6), (dieSize / 6));
+          ellipse(xPos + (0.75 * dieSize), yPos + (0.75 * dieSize), (dieSize / 6), (dieSize / 6));
           if(num >= 4){
             //4
-            ellipse(xPos + 45, yPos + 15, 10, 10);
-            ellipse(xPos + 15, yPos + 45, 10, 10);
+            ellipse(xPos + (0.75 * dieSize), yPos + (0.25 * dieSize), (dieSize / 6), (dieSize / 6));
+            ellipse(xPos + (0.25 * dieSize), yPos + (0.75 * dieSize), (dieSize / 6), (dieSize / 6));
           }
           if(num > 4){
             //6
-            ellipse(xPos + 15, yPos + 30, 10, 10);
-            ellipse(xPos + 45, yPos + 30, 10, 10);
+            ellipse(xPos + (0.25 * dieSize), yPos + (0.5 * dieSize), (dieSize / 6), (dieSize / 6));
+            ellipse(xPos + (0.75 * dieSize), yPos + (0.5 * dieSize), (dieSize / 6), (dieSize / 6));
           }
         }
         
